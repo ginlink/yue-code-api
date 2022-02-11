@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <input id="file-input" ref="file" unselectable="on" type="file" accept=".xlsx" />
+
+  <script type="text/javascript">
+    window.onload = function () {
+      const input = document.getElementById('file-input')
+
+      input.addEventListener('change', upload)
+    }
+
+    function upload() {
+      const formData = new FormData(); // FormData上传文件
+      console.log('[](this):', this.files)
+
+      Object.keys(this.files).forEach((key) => {
+        formData.append('file', this.files[key]);
+      });
+      axios({
+          url: 'http://192.168.3.42:3099/api/record/upload',
+          method: 'POST',
+          data: formData,
+          headers: {
+            'Content-type': 'multipart/form-data',
+          },
+        })
+        .then(() => {
+          console.log('导入成功');
+        })
+        .catch(() => {
+          this.$refs.file.value = '';
+        });
+    }
+  </script>
+</body>
+
+</html>
