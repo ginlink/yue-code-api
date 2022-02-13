@@ -1,5 +1,10 @@
-import { Controller } from '@nestjs/common';
+import { Controller, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { Crud, CrudController } from '@nestjsx/crud';
+import {
+  UserInterceptor,
+  UsersInterceptor,
+} from 'src/interceptors/user.interceptor';
 
 import { User } from './user.entity';
 import { UserService } from './user.service';
@@ -7,6 +12,16 @@ import { UserService } from './user.service';
 @Crud({
   model: {
     type: User,
+  },
+  routes: {
+    getManyBase: {
+      decorators: [UseGuards(AuthGuard('jwt'))],
+      interceptors: [UsersInterceptor],
+    },
+    getOneBase: {
+      decorators: [UseGuards(AuthGuard('jwt'))],
+      interceptors: [UserInterceptor],
+    },
   },
 })
 @Controller('user')

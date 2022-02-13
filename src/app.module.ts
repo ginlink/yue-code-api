@@ -4,11 +4,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { TestModule } from './module/test/test.module';
 import { UserModule } from './module/user/user.module';
+import { AuthModule } from './module/auth/auth.module';
 
 @Module({
   imports: [
     TestModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -28,6 +31,7 @@ import { UserModule } from './module/user/user.module';
       },
     }),
     UserModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
