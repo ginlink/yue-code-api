@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserModule } from './module/user/user.module';
 import { join } from 'path';
+import { TestModule } from './module/test/test.module';
 import { User111Module } from './module/user111/user111.module';
 
 @Module({
   imports: [
-    UserModule,
+    TestModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
