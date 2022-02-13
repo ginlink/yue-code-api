@@ -3,7 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { TestModule } from './module/test/test.module';
-import { User111Module } from './module/user111/user111.module';
+import { UserModule } from './module/user/user.module';
 
 @Module({
   imports: [
@@ -27,7 +27,7 @@ import { User111Module } from './module/user111/user111.module';
         };
       },
     }),
-    User111Module,
+    UserModule,
   ],
   controllers: [],
   providers: [],
