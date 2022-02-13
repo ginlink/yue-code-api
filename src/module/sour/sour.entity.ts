@@ -14,6 +14,8 @@ export class Sour {
   id: number;
 
   @Column()
+  name: string;
+  @Column()
   receiveTime: string;
   @Column()
   checkTime: string;

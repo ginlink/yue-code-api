@@ -17,7 +17,11 @@ export class UserService extends TypeOrmCrudService<User> {
   }
 
   async findUsername(username: string) {
-    return this.repo.findOne({ where: { username } });
+    return await this.repo
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.sours', 'sours')
+      .where('user.username = :username', { username })
+      .getOne();
   }
 
   async findAll() {

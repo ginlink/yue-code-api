@@ -11,7 +11,7 @@ import { SourService } from './sour.service';
     type: Sour,
   },
   routes: {
-    only: ['getOneBase', 'getManyBase'],
+    only: ['getOneBase', 'getManyBase', 'updateOneBase', 'replaceOneBase'],
   },
   query: {
     // exclude: ['updatedAt'],
@@ -28,7 +28,7 @@ export class SourController implements CrudController<Sour> {
   @Post()
   async create(@Request() req, @Body() sourDto: SourDto) {
     console.log('[req]:', req.user);
-    const { id: userId } = req.user as { id: number };
+    const { userId } = req.user;
 
     return this.service.create(userId, sourDto);
   }

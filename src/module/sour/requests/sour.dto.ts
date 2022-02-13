@@ -4,6 +4,10 @@ import { IsString } from 'class-validator';
 export class SourDto {
   @ApiProperty()
   @IsString()
+  readonly name: string;
+
+  @ApiProperty()
+  @IsString()
   readonly receiveTime: string;
 
   @ApiProperty()
