@@ -1,5 +1,6 @@
 import { Controller, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Crud, CrudController } from '@nestjsx/crud';
 import {
   UserInterceptor,
@@ -24,6 +25,8 @@ import { UserService } from './user.service';
     },
   },
 })
+@ApiBearerAuth()
+@ApiTags('User')
 @Controller('user')
 export class UserController implements CrudController<User> {
   constructor(public service: UserService) {}
