@@ -40,10 +40,14 @@ export class AuthService {
   async login(user: any) {
     return this.userService.findUsername(user.username).then((userData) => {
       const Token = this.createToken(userData);
+      delete userData.password;
+
       return {
-        username: userData.username,
-        access_token: Token,
         statusCode: 200,
+        data: {
+          token: Token,
+          ...userData,
+        },
       };
     });
   }

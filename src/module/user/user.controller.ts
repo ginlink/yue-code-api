@@ -14,19 +14,38 @@ import { UserService } from './user.service';
   model: {
     type: User,
   },
-  routes: {
-    getManyBase: {
-      decorators: [UseGuards(AuthGuard('jwt'))],
-      interceptors: [UsersInterceptor],
-    },
-    getOneBase: {
-      decorators: [UseGuards(AuthGuard('jwt'))],
-      interceptors: [UserInterceptor],
+  // routes: {
+  //   getManyBase: {
+  //     decorators: [UseGuards(AuthGuard('jwt'))],
+  //     interceptors: [UsersInterceptor],
+  //   },
+  //   getOneBase: {
+  //     decorators: [UseGuards(AuthGuard('jwt'))],
+  //     interceptors: [UserInterceptor],
+  //   },
+  // },
+
+  query: {
+    softDelete: true,
+    join: {
+      sours: {
+        eager: true,
+        exclude: ['description'],
+      },
+      // 'company.projects': {
+      //   alias: 'pr',
+      //   exclude: ['description'],
+      // },
+      // profile: {
+      //   eager: true,
+      //   exclude: ['updatedAt'],
+      // },
     },
   },
 })
 @ApiBearerAuth()
 @ApiTags('User')
+@UseGuards(AuthGuard('jwt'))
 @Controller('user')
 export class UserController implements CrudController<User> {
   constructor(public service: UserService) {}
