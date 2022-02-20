@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  yue-code-api:
+    image: ginlink/yue-code-api:latest
+    container_name: yue-code-api
+    restart: always
+    ports:
+      - '3060:3060'
+    privileged: true
+    env_file:
+      - ./env.list
+
+networks:
+  lend_default:
+    driver: bridge
