@@ -11,7 +11,13 @@ import { SourService } from './sour.service';
     type: Sour,
   },
   routes: {
-    only: ['getOneBase', 'getManyBase', 'updateOneBase', 'replaceOneBase'],
+    // only: [
+    //   'getOneBase',
+    //   'getManyBase',
+    //   'updateOneBase',
+    //   'replaceOneBase',
+    //   'deleteOneBase',
+    // ],
   },
   query: {
     // exclude: ['updatedAt'],
