@@ -7,7 +7,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { TransformInterceptor } from './interceptors/tansform.interceptor';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 
-const port = 9991;
+const port = 3060;
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
